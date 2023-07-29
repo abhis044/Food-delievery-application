@@ -103,7 +103,7 @@ const CreateContainer = () => {
     let img = imageAsset;
     console.log(title);
     const { status } = await axios.post(
-      "https://food-delivery-u3hj.onrender.com/api/additem",
+      "https://food-delivery-bphm.onrender.com/api/additem",
       { CategoryName, name, img, option },
       {
         headers: {

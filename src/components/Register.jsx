@@ -29,7 +29,7 @@ const Login = () => {
     let password = user.password;
 
     const { status } = await axios.post(
-      "https://food-delivery-u3hj.onrender.com/api/users/register",
+      "https://food-delivery-bphm.onrender.com/api/users/register",
       { name, email, password ,address},
       {
         headers: {

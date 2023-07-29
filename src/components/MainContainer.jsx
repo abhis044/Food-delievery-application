@@ -13,7 +13,7 @@ const MainContainer = () => {
   const { user,goregister,gologin } = CartState();
   const [data, setData] = useState([]);
   const getItems = async () => {
-    let { data } = await axios.get("https://food-delivery-u3hj.onrender.com/api");
+    let { data } = await axios.get("https://food-delivery-bphm.onrender.com/api");
     setData(data.cartitems);
   };
   const [scrollValue, setScrollValue] = useState(0);
