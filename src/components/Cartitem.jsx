@@ -5,29 +5,38 @@ import { CartState } from "../context/CartProvider";
 let items = [];
 
 const CartItem = ({ item }) => {
-  const { cartitems, setCartitems, price, setPrice ,foodname,setFoodname} = CartState();
+  const { cartitems, setCartitems, price, setPrice, setFoodname, myorder, setMyorder } = CartState();
   const [qty, setQty] = useState(1);
-  const updateQty = (action, name, size) => {
+  const updateQty = (action, name, size,id) => {
     if (action == "add") {
       setQty(qty + 1);
       setPrice(price + parseFloat(item.price));
+      const updatedCartItems = cartitems.map((item) =>
+      (item._id === id && item.size===size)? { ...item, qty: item.qty+1, tprice: parseFloat(item.price+item.tprice)} : item
+    );
+    setCartitems(updatedCartItems);
     } else {
       if (qty == 1) {
         items = cartitems.filter(
           (item) => !(item.name === name && item.size === size)
         );
         setCartitems(items);
-            setFoodname((prevFoodname) => ({
-                ...prevFoodname,
-                [name]: prevFoodname[name].filter((newsize) => newsize !== size),
-              }));
+        setFoodname((prevFoodname) => ({
+          ...prevFoodname,
+          [name]: prevFoodname[name].filter((newsize) => newsize !== size),
+        }));
       } else {
         setQty(qty - 1);
+        const updatedCartItems = cartitems.map((item) =>
+        (item._id === id && item.size===size) ? { ...item, qty: item.qty-1, tprice: parseFloat(item.tprice-item.price)} : item
+      );
+      setCartitems(updatedCartItems);
       }
       setPrice(price - parseFloat(item.price));
     }
   };
-
+ 
+  // console.log(myorder);
   useEffect(() => {
     items = cartitems;
   }, [qty, items]);
@@ -37,13 +46,13 @@ const CartItem = ({ item }) => {
       <div className="flex flex-col gap-2">
         <p className="text-base text-gray-50">{item.name}</p>
         <p className="text-sm block text-gray-300 font-semibold">
-          ₹ {parseFloat(item.price) * qty}
+          ₹ {item.tprice}
         </p>
       </div>
       <div className="group flex items-center gap-2 ml-auto cursor-pointer">
         <motion.div
           whileTap={{ scale: 0.75 }}
-          onClick={() => updateQty("remove", item.name, item.size)}
+          onClick={() => updateQty("remove", item.name, item.size,item._id)}
         >
           <BiMinus className="text-gray-50" />
         </motion.div>
@@ -55,7 +64,7 @@ const CartItem = ({ item }) => {
         </p>
         <motion.div
           whileTap={{ scale: 0.75 }}
-          onClick={() => updateQty("add", item.name, item.size)}
+          onClick={() => updateQty("add", item.name, item.size,item._id)}
         >
           <BiPlus className="text-gray-50" />
         </motion.div>

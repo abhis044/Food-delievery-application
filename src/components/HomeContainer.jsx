@@ -18,7 +18,8 @@ const HomeContainer = () => {
         <p className="text-[2.5rem] lg:text-[4.5rem] font bold tacking-wide text-headingColor">
           The Fastest Delivery in<span className="text-orange-600 text-[3rem] lg:text-[5rem] ">Your City
             </span></p>
-            <p className="text-base text-textColor text-center md:text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus velit, molestias exercitationem facilis excepturi sunt repellendus esse distinctio error asperiores laboriosam similique natus optio odio illum iusto quos, laudantium ipsa aut fugit. Molestias, repellendus!
+            <p className="text-base text-textColor text-center md:text-left">Order delicious meals from the comfort of your home!
+            Savor the flavors - Choose from a wide range of mouthwatering dishes
             </p>
 
           <button type="button" className="bg-gradient-to-br from-orange-500 to-orange-600 w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100">

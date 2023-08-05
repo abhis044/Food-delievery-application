@@ -10,7 +10,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import Login from "./Login";
 import Register from"./Register";
 const MainContainer = () => {
-  const { user,goregister,gologin } = CartState();
+  const {goregister,gologin } = CartState();
   const [data, setData] = useState([]);
   const getItems = async () => {
     let { data } = await axios.get("https://food-delivery-bphm.onrender.com/api");

@@ -60,13 +60,14 @@ const Header = () => {
             className="flex items-center gap-8"
           >
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Home
+              <Link to="/">Home</Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               Menu
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              About Us
+
+              <Link to="/myorder" onClick={()=>setisMenu(false)}>MyOrder</Link>
             </li>
             <li className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
               Services
@@ -196,7 +197,7 @@ const Header = () => {
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setisMenu(false)}
                 >
-                  Home
+                  <Link to="/">Home</Link>
                 </li>
                 <li
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
@@ -208,7 +209,7 @@ const Header = () => {
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setisMenu(false)}
                 >
-                  About Us
+                  <Link to="/myorder">MyOrder</Link>
                 </li>
                 <li
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
@@ -234,10 +235,10 @@ const Header = () => {
                   </p>{" "}
                   <p
                     className="m-2 p-2 rounded-md shadow-lg flex items-center gap-3 cursor-pointer justify-center bg-gray-100 hover:bg-slate-300 transition-all duration-100 ease-in-out text-textColor text-base"
-                    onClick={login}
+                    onClick={Login}
                   >
-                      Login
-                  <MdLogin />
+                    Login
+                    <MdLogin />
                   </p>
                 </div>
               )}

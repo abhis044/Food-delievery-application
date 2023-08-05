@@ -9,7 +9,7 @@ const CartProvider = ({ children }) => {
   const [cartitems, setCartitems] = useState([]);
   const[goregister,setGoregister]=useState(false);
   const[gologin,setGologin]=useState(false);
-
+// console.log(myorder);
   return (
     <>
       <cartContext.Provider
@@ -28,7 +28,7 @@ const CartProvider = ({ children }) => {
           setGoregister,
           gologin,
           setGologin,
-        }}
+       }}
       >
         {children}
       </cartContext.Provider>

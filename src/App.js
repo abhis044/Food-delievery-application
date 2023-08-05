@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MainContainer from "./components/MainContainer";
 import CreateContainer from "./components/CreateContainer";
 import Header from "./components/Header";
+import Myorder from "./components/Myorder";
 function App() {
   return (
     <Router>
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainContainer />} />
             <Route path="/createItem" element={<CreateContainer />} />
+            <Route path="/myorder" element={<Myorder/>}/>
           </Routes>
         </main>
       </div>

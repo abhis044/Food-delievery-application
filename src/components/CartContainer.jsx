@@ -5,14 +5,41 @@ import { RiRefreshFill } from "react-icons/ri";
 import EmptyCart from "../img/emptyCart.svg";
 import CartItem from "./Cartitem";
 import { CartState } from "../context/CartProvider";
+import axios from "axios";
 const CartContainer = () => {
-    const { cartshow, setCartshow,cartitems,user,price,setCartitems,setFoodname } = CartState();
+  const { cartshow, setCartshow, cartitems, price, setCartitems, setFoodname, gologin, setGologin } = CartState();
   const showcart = () => {
     setCartshow(!cartshow);
   };
-  const clearCart=()=>{
+  const clearCart = () => {
     setCartitems([]);
     setFoodname({});
+  }
+  const logintocheckout = () => {
+    setCartshow(!cartshow);
+    setGologin(!gologin);
+  }
+  let user = JSON.parse(localStorage.getItem("USER"));
+  if (user) user = user.email;
+  const handlecheckout = async () => {
+    let email = user;
+    let order_data = cartitems;
+    let order_date = new Date().toDateString();
+    let order_amount=price+40;
+    const { status } = await axios.post(
+      "https://food-delivery-bphm.onrender.com/api/orderData",
+      { email, order_data, order_date,order_amount },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (status === 200) {
+      clearCart();
+    } else {
+      console.log("Error");
+    }
   }
   return (
     <motion.div
@@ -32,7 +59,7 @@ const CartContainer = () => {
         <motion.p
           whileTap={{ scale: 0.75 }}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 rounded-md hover:shadow-md cursor-pointer text-textColor text-base"
-            onClick={clearCart}
+          onClick={clearCart}
         >
           Clear <RiRefreshFill />{" "}
         </motion.p>
@@ -62,7 +89,7 @@ const CartContainer = () => {
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-xl font-semibold">Total</p>
               <p className="text-gray-200 text-xl font-semibold">
-              ₹ {price + 40}
+                ₹ {price + 40}
               </p>
             </div>
             {user ? (
@@ -70,6 +97,7 @@ const CartContainer = () => {
                 whileTap={{ scale: 0.8 }}
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+                onClick={handlecheckout}
               >
                 Check Out
               </motion.button>
@@ -78,6 +106,7 @@ const CartContainer = () => {
                 whileTap={{ scale: 0.8 }}
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+                onClick={logintocheckout}
               >
                 Login to Check Out
               </motion.button>

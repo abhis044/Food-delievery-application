@@ -6,7 +6,7 @@ import { MdOutlineEmail, MdOutlineKeyboardBackspace } from "react-icons/md";
 import { FaRegAddressCard, FaUserAlt } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
-const Login = () => {
+const Signup = () => {
     const {goregister,setGoregister,gologin,setGologin} = CartState();
   const [user, setUser] = useState({
     name: "",
@@ -150,4 +150,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

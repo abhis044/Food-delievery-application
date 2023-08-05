@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Rowcontainer from "./RowContainer";
 
 const MenuContainer = ({fooditems,scrollValue}) => {
-  console.log(fooditems);
   const [filter, setfilter] = useState("fruits");
   return (
     <section className="w-full my-6" id="menu">
@@ -55,6 +54,7 @@ const MenuContainer = ({fooditems,scrollValue}) => {
           <Rowcontainer
             data={fooditems.filter((n) => n.CategoryName === filter)}
             scrollValue={scrollValue}
+            flag={false}
           /> 
         </div>
       </div>
